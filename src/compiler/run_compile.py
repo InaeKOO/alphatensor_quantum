@@ -37,16 +37,16 @@ def main(_):
   exp_config = config.exp_config
   
   # Example matrix
-  unitary_matrix = (1/np.sqrt(2)) * np.array([
-    [1, -1j, 0, 0],
-    [-1j, 1, 0, 0],
-    [0, 0, 1, -1j],
-    [0, 0, -1j, 1]
-  ])
+  unitary_matrix = 1/np.sqrt(7) * np.matrix([
+    [2, -2+1j],
+    [2+1j, 2]
+  ], dtype=np.complex128)
+
+  unitary_matrix = np.kron(unitary_matrix,np.eye(4))
 
   # Convert matrix to circuit
   circuit = matrix_to_circuit(unitary_matrix)
-  print(circuit.draw)
+  print(circuit.draw(output='text'))
   
   # Initialize the agent and the run state.
   agent = agent_lib.Agent(config)
